@@ -9,13 +9,15 @@ server.listen(5000, () => {
 
 
 server.get('/', (request, response) => {
-  console.log("GET REQUEST");
-  response.send ('<h1> GET REQUEST RECEIVED</h1>')
+  // console.log("GET REQUEST");
+  response.send('<h1> GET REQUEST RECEIVED</h1>')
 })
 
 server.get('/api/users', (req, res) => {
   db.find()
-  .then()
+  .then( users => {
+    res.status(200).json({users})
+  })
   .catch( err => {
      res.status(500).json({error: 'PROBLEM RETREIVING DATA'});
   })
